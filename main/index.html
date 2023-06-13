@@ -12,21 +12,39 @@
       <div id="results">
         <a href="results.html">View High Score</a>
       </div>
-      <div id="timer">
-        15
-      </div>
+      <div id="countdown"></div>
     </header>
     
-    <main>
+    <main class="container">
       <div id="container-box">
-        <div id="questions"><h1>Coding Quiz Challenge</h1></div>
-        <div id="options">
-          <p>Try to answer the following code-related questions within the time limit. <br>
-              Keep in mind that incorrect answers will penalize your score/time by ten seconds!
-          </p>
+        <div id="quiz-heading"><h1>Coding Quiz Challenge</h1></div>
+        <div id="start-box">
+          <div id="start-message">
+            Try to answer the following code-related questions within the time limit. <br>
+                Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+          </div>
+          <button id="start-button">Start Quiz</button>
         </div>
-      <button id="start">Start Quiz</button>
+        <div id="questions" hidden>
+          <div id="question" name="1">
+            Commonly used data types Do Not include:
+          </div>
+          <button id="answer-1" class="button" name="1">1. Strings</button>
+          <button id="answer-2" class="button" name="2">2. booleans</button>
+          <button id="answer-3" class="button" name="3">3. alerts</button>
+          <button id="answer-4" class="button" name="4">4. numbers</button>
+        </div>
       </div>
+      <div id="get-initials" hidden>
+        <div id="all-done"><h1>All Done!</h1></div>
+        <div>Your final score is 22.</div>
+        <div id="initials-details">
+          Enter initials:
+          <input type="text" id="initials">
+          <button id="submit">Submit</button>
+        </div>
+    </div>
+      <div id="check-answer" hidden></div>
 
     </main>
 
