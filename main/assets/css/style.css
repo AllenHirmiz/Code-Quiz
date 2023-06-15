@@ -112,8 +112,7 @@ header div {
     text-align: left;
   }
 
-
-  #answer-1,#answer-2,#answer-3,#answer-4 {
+  #answer-1,#answer-2,#answer-3,#answer-4, button {
     background-color: #48719f;
     border: none;
     color: var(--color-background3);
@@ -129,7 +128,7 @@ header div {
   }
   
   
-  #answer-1:hover,#answer-2:hover,#answer-3:hover,#answer-4:hover {
+  #answer-1:hover,#answer-2:hover,#answer-3:hover,#answer-4:hover, button {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
   }
 
@@ -165,6 +164,46 @@ header div {
     color: var(--text-second);
     
   }
+
+        
+  ol li {
+    list-style-type: none;
+    counter-increment: item;
+    text-align: left;
+    padding: 2px 10px;
+    margin-left: 40px;
+    color: var(--text-second);
+  }
+  
+  ol li:before {
+    content: counter(item) ". ";
+    color: var(--text-second);
+  }
+
+  ol li:hover {
+    content: counter(item) ". ";
+    color: var(--color-background);
+  }
+
+  #high-scores {
+    display:inline-flex;
+    margin: 0 20px;
+    justify-content: center;
+  }
+
+  #high-scores a {
+    display: block;
+    margin: 0 20px;
+    padding: 0 20px;
+    color: var(--text-second);
+    text-decoration: none;
+  }
+
+  #high-scores a:hover {
+    color: var(--color-second);
+    text-decoration: none;
+  }
+      
 
   @media screen and (max-width: 1183px) {
     main {

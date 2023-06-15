@@ -1,22 +1,28 @@
 var outer = document.querySelector(".outer-div");
 var inner = document.querySelector(".inner-div");
 var button = document.querySelector(".button");
-
 var timeInterval;
-
 var startButtonEl = document.getElementById('start-button');
 var button1El = document.getElementById('answer-1');
 var button2El = document.getElementById('answer-2');
 var button3El = document.getElementById('answer-3');
 var button4El = document.getElementById('answer-4');
-
-var timeLeft = 10;
+var timeLeft = 100;
 var score = 0;
-
 var timerEl = document.getElementById('countdown');
-
 var answerEl = document.getElementById('check-answer');
 var scoreEl = document.getElementById('final-score')
+
+
+
+
+var initialsInput = document.querySelector("#initials-text");
+var initialsForm = document.querySelector("#initials-form");
+var initialsList = document.querySelector("#initials-list");
+var initialsCountSpan = document.querySelector("#initials-count");
+
+
+
 
 const buttonGroup = document.getElementById("questions");
 const questionEl = document.getElementById("question");
@@ -27,10 +33,9 @@ const isButton = e.target.nodeName === 'BUTTON';
     if(!isButton) {
         return;
     }
-
     
     if (questionEl.getAttribute("name")  == 1){ // check question number
-        if (e.target.id == "answer-1") {
+        if (e.target.id == "answer-2") {
             console.log("question 1")
             answerEl.textContent = 'true';
             answerEl.hidden = false;
@@ -102,7 +107,7 @@ const isButton = e.target.nodeName === 'BUTTON';
         }
     }else if (questionEl.getAttribute("name")  == 4){
         console.log("question 4")
-        if (e.target.id == "answer-4"){
+        if (e.target.id == "answer-2"){
             answerEl.textContent = 'true';
             answerEl.hidden = false;
             questionEl.setAttribute('name', "5");
@@ -125,23 +130,17 @@ const isButton = e.target.nodeName === 'BUTTON';
         }
     }else if (questionEl.getAttribute("name")  == 5){
         console.log("question 5")
-        if (e.target.id == "answer-4"){
+        if (e.target.id == "answer-3"){
             clearInterval(timeInterval);
             answerEl.textContent = 'true';
             answerEl.hidden = false;
-            
             finalScore ();
-            
-                
         } else {
             clearInterval(timeInterval);
             answerEl.textContent = 'False';
             answerEl.hidden = false;
-            timeLeft = timeLeft - 10
-            
-            
+            timeLeft = timeLeft - 10;
             finalScore ();
-
         }
     }
     
@@ -164,7 +163,6 @@ function startTimer() {
             timeLeft--;
             document.getElementById("start-box").hidden = true;
             document.getElementById("questions").hidden = false;
-
         } 
         else {
             // Once `timeLeft` gets to 0, set `timerEl` to an empty string
@@ -191,19 +189,51 @@ function finalScore () {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // calling methods
 startButtonEl.addEventListener("click", startTimer);
 buttonGroup.addEventListener("click", buttonGroupPressed);
+
+
+
+var initials = [];
+
+// This function is being called below and will run when the page loads.
+function init() {
+  // Get stored initials from localStorage
+  var storedInitials = JSON.parse(localStorage.getItem("initials"));
+
+  // If initials were retrieved from localStorage, update the initials array to it
+  if (storedInitials !== null) {
+    initials = storedInitials;
+  }
+}
+
+function storeInitials() {
+  // Stringify and set key in localStorage to initials array
+  localStorage.setItem("initials", JSON.stringify(initials));
+}
+
+// Add submit event to form
+initialsForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  var initialsText = initialsInput.value.trim() + " - " + score;
+
+  // Return from function early if submitted initials is blank
+  if (initialsText === "") {
+    return;
+  }
+
+  // Add new initialsText to initials array, clear the input
+  initials.push(initialsText);
+  initialsInput.value = "";
+
+  // Store updated initials in localStorage, re-render the list
+  storeInitials();
+});
+
+
+
+// Calls init to retrieve data and render it to the page on load
+init()
+

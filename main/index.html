@@ -37,13 +37,13 @@
       </div>
       <div id="get-initials" hidden>
         <div id="all-done"><h1>All Done!</h1></div>
-        <div id="final-score"></div>
-        <div id="initials-details">
-          Enter initials:
-          <input type="text" id="initials">
-          <button id="submit">Submit</button>
-        </div>
-    </div>
+        <div id="final-score"><h2></h2></div>
+        <div class="card">
+          <form id="initials-form" method="POST">
+            <label for="initials-text">Enter Initials: </label>
+            <input type="text" placeholder="" name="initials-text" id="initials-text" />
+          </form>
+      </div>
       <div id="check-answer" hidden></div>
 
     </main>
