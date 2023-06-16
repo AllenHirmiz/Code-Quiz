@@ -16,6 +16,10 @@
     color: var(--text-main);
 }
 
+main h1, main p, main div, main ol {
+  display: block;
+  width: 100%;
+}
 
 header div a:link {
   color: var(--text-second);
